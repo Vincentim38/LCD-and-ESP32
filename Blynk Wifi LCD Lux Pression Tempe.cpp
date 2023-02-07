@@ -25,20 +25,24 @@ char pass[] = "tim12345";
 
 void myTimerEvent()
 {
+    // Print the time since the last boot in second
     Blynk.virtualWrite(V2, millis() / 1000);
-
+    
+    // Read the luminoisity, print it on serail port and send it to the virtual port V5 on Blynk
     int lux = lightMeter.readLightLevel();
     Serial.print("Luminosité : ");
     Serial.print(lux);
     Serial.println(" lx");
     Blynk.virtualWrite(V5, lux);
 
+    // Same for temperature on virtual Blynk port V6
     float tempe = bmp.readTemperature();
     Serial.print(F("Température = "));
     Serial.print(tempe);
     Serial.println(" deg C");
     Blynk.virtualWrite(V6, tempe);
 
+    // Same for pressure and calculate the sea level pressure
     float pression = bmp.readPressure();
     float pressionmer = pression * 1.0859 + 0.03;
     Serial.print(F("Pression à 690m = "));
@@ -50,6 +54,7 @@ void myTimerEvent()
     Blynk.virtualWrite(V7, pression / 100);
     Blynk.virtualWrite(V9, pressionmer / 100);
 
+    // Calculate the altitude
     float alti = bmp.readAltitude(1013);
     Serial.print(F("Altitude approx = "));
     Serial.print(alti);
@@ -58,6 +63,7 @@ void myTimerEvent()
 
     Serial.println("------------------");
 
+    // Print all the results on the LCD
     u8g2.setFont(u8g2_font_6x10_tf);
     u8g2.clearBuffer();
 
@@ -86,7 +92,7 @@ void myTimerEvent()
 
 void myTimerEvent2()
 {
-    // Restart the ESP32 every 24h
+    // Restart the ESP32 every myTimerEvent2() (here every 24h)
     ESP.restart();
 }
 
@@ -101,6 +107,7 @@ void setup()
 
     // Initialize the I2C bus (BH1750 library doesn't do this automatically) :
     Wire.begin();
+    
     lightMeter.begin();
     bmp.begin();
     u8g2.begin();
