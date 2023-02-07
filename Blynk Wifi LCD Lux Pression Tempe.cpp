@@ -86,6 +86,7 @@ void myTimerEvent()
 
 void myTimerEvent2()
 {
+    // Restart the ESP32 every 24h
     ESP.restart();
 }
 
@@ -95,7 +96,7 @@ void setup()
     Blynk.begin(auth, ssid, pass);
     // Setup a function to be called every 10 seconds :
     timer.setInterval(10000, myTimerEvent);
-    // Setup a function to be called every 24 hours :
+    // Setup the reset function to be called every 24 hours (86400000 milliseconds):
     timer.setInterval(86400000, myTimerEvent2);
 
     // Initialize the I2C bus (BH1750 library doesn't do this automatically) :
