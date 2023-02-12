@@ -202,7 +202,6 @@ void draw(void) {
   }
 }
 
-
 void setup(void) {
   u8g2.begin();
 }

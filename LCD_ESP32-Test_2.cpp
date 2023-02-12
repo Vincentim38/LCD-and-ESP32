@@ -9,6 +9,7 @@
 U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, U8X8_PIN_NONE);
 
 const char COPYRIGHT_SYMBOL[] = {0xa9, '\0'};
+
 void u8g2_prepare() {
  u8g2.setFont(u8g2_font_6x10_tf);
  u8g2.setFontRefHeightExtendedText();
@@ -101,10 +102,12 @@ static const unsigned char image_bits[] U8X8_PROGMEM = {
 void u8g2_bitmap() {
  u8g2.drawXBMP(0, 5, image_width, image_height, image_bits);
 }
+
 void setup(void) {
  u8g2.begin();
  u8g2_prepare();
 }
+
 float i = 0.0;
 void loop(void) {
  u8g2.clearBuffer();
