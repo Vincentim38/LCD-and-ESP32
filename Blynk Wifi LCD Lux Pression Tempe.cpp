@@ -1,6 +1,6 @@
 #define BLYNK_TEMPLATE_ID "TMPLtHHF3prF"
 #define BLYNK_DEVICE_NAME "Template pour ESP 32 avec Wifi"
-#define BLYNK_AUTH_TOKEN "TPO34_bKWxJGqjD0VOH8cr-1EYSQSiI2"
+#define BLYNK_AUTH_TOKEN "xxxxxxx"
 #define BLYNK_PRINT Serial
 
 #define BMP_SCK (13)
@@ -20,8 +20,8 @@ BH1750 lightMeter;
 BlynkTimer timer;
 U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, U8X8_PIN_NONE);
 char auth[] = BLYNK_AUTH_TOKEN;
-char ssid[] = "Livebox-1932";
-char pass[] = "tim12345";
+char ssid[] = "xxxx";
+char pass[] = "xxxx";
 
 void myTimerEvent()
 {
